@@ -1,7 +1,7 @@
 # This workflow is aimed to build and publish the static web app to Azure Static Web Apps
 # It is triggered when a pull request is merged into main branch
 
-name: Azure static app deploy
+name: CD - Azure static app deploy
 
 env:
   APP_LOCATION: "/" # location of your client code
@@ -9,15 +9,12 @@ env:
   OUTPUT_LOCATION: "build" # location of client code build output
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-    types:
-      - closed
 
 jobs:
-  azure-static-web-apps-deploy:
-    if: github.event.pull_request.merged == true
+  azure-static-web-app-deploy:
     runs-on: ubuntu-latest
 
     steps:
